@@ -58,9 +58,17 @@
     $row_count = $statement->rowCount();
 
     if($row_count > 0){
-      echo "Login Berhasil";
+      ?>
+      <div class="alert alert-success" role="alert">
+      Login Berhasil
+      </div>
+      <?php
     }else{
-      echo "Login Gagal";
+    ?>
+      <div class="alert alert-danger" role="alert">
+      Login Gagal!
+      </div>
+      <?php
     }
       }
 
