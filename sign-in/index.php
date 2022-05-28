@@ -44,6 +44,11 @@
 
     <?php
 
+    session_start();
+    if(isset($_SESSION['email'])){
+      header('Location: ../dashboard/index.php');
+    }
+
       include_once("../database/database.php");
       $database = new Database;
       $connection = $database->getConnecion();
@@ -58,7 +63,7 @@
     $row_count = $statement->rowCount();
 
     if($row_count > 0){
-
+      $_SESSION['email'] = $_POST['inputan_email'];
       header('Location: ../dashboard/index.php')
 
       ?>
