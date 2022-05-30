@@ -12,11 +12,23 @@
             </tr>
         </thead>
         <tbody>
+            <?php
+            include_once("../database/database.php");
+            $database = new Database;
+            $connection = $database->getConnecion();
+
+            $selectSQL = "SELECT * FROM dosen";
+            $statement = $connection->prepare($selectSQL);
+            $statement->execute();
+
+            $no = 1;
+            while($data = $statement->fetch(PDO::FETCH_ASSOC)) {
+            ?>
             <tr>
-                <td>tes</td>
-                <td>tes</td>
-                <td>tes</td>
-                <td>tes</td>
+                <td> <?php echo $no++ ?> </td>
+                <td> <?php echo $data['nama_dosen'] ?> </td>
+                <td> <?php echo $data['handphone'] ?> </td>
+                <td> <?php echo $data['email'] ?> </td>
                 <td>
                     <a href="#" class="badge bg-warning">
                         <span data-feather="edit"></span>
@@ -26,6 +38,10 @@
                     </a>
                 </td>
             </tr>
+            <?php
+            }
+            ?>
+            
         </tbody>
     </table>
 
